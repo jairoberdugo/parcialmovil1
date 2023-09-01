@@ -6,6 +6,7 @@
 
 // c.      Mostrar el total que se debe pagar
 
+import 'dart:ffi';
 import 'dart:io';
 class productoss{
   String? nombre;
@@ -34,7 +35,7 @@ var cantp= f[1];
   return cantp;
 }
 
-String obtenprecio(var List, int posicion){
+Int obtenprecio(var List, int posicion){
 var f= List[posicion].split('-');
 var prec= f[3];
   return prec;
@@ -65,9 +66,11 @@ void main() {
       // obtengo cantidad disponible producto
       var cantpro =obtencant(List, 0);
       // obtengo precio
-      var prec= obtenprecio(List, 0);
+      int prec= obtenprecio(List, 0);
+      
       print("que cantidad desea comprar? : ");
       var ca = stdin.readLineSync();
+      int tparcial=ca*prec;
 
       
      
