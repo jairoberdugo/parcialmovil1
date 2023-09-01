@@ -16,28 +16,37 @@ class productoss{
   }
 }
 
-String obtenfechav(var List){
-var f= List[0].split('-');
+String obtenfechav(var List, posicion){
+var f= List[posicion].split('-');
 var fechavenc= f[2];
   return fechavenc;
 }
 
-String obtenom(var List){
-var f= List[0].split('-');
+String obtenom(var List, posicion){
+var f= List[posicion].split('-');
 var nomp= f[0];
   return nomp;
 }
 
-String obtencant(var List){
-var f= List[0].split('-');
+String obtencant(var List, int posicion){
+var f= List[posicion].split('-');
 var cantp= f[1];
   return cantp;
 }
 
+String obtenprecio(var List, int posicion){
+var f= List[posicion].split('-');
+var prec= f[3];
+  return prec;
+}
+
 void main() {
-  var List = ["LINASA-5-20/09/2023", "TE VERDE-10-10/09/2023","LEVADURA-45-12/09/2023"];
+  var List = ["LINASA-5-20/09/2023-12500", "TE VERDE-10-10/09/2023-15000","LEVADURA-45-12/09/2023-20000"];
   String producto = "", fecha = "";
   bool cantp = true;
+  print("DIGITE LA FECHA ACTUAL EN ESTE FORMATO DAY/MONTH/YEAR:");
+      String? fechaactu = stdin.readLineSync();
+      int total=0;
 
   do {
     print(
@@ -45,27 +54,40 @@ void main() {
             "1. LINASA \n" +
             "2. TE VERDE \n" +
             "3. LEVADURA \n" +
-            "6. CALCULAR TOTAL Y PAGAR");
+            "4. CALCULAR TOTAL Y PAGAR");
     String? r = stdin.readLineSync();
     switch (r) {
       case "1":
       // obtengo fecha vencimiento producto
-      var fechavenc= obtenfechav(List);
+      var fechavenc= obtenfechav(List, 0);
       // obtengo nombre producto
-      var nomp = obtenom(List);
+      var nomp = obtenom(List, 0);
       // obtengo cantidad disponible producto
-      var cantpro =obtencant(List);
+      var cantpro =obtencant(List, 0);
+      // obtengo precio
+      var prec= obtenprecio(List, 0);
+      print("que cantidad desea comprar? : ");
+      var ca = stdin.readLineSync();
 
-      var fecha = DateTime.now();
-      print (fecha);
-
-     // fecha = fecha.replaceAll('/', '-');
+      
+     
      // DateTime date = DateTime.parse(fecha);
+     // fecha = fecha.replaceAll('/', '-');
 
         break;
       case "2":
-        print("entraste a la clase 1");
+      var fechavenc= obtenfechav(List, 1);
+      var nomp = obtenom(List, 1);
+      var cantpro =obtencant(List, 1);
+       var prec= obtenprecio(List, 0);
+
         break;
+        case "3":
+         break;
+         case "4":
+         cantp=false;
+         print("EL TOTAL DE SU COMPRA ES: $total");
+         break;
     }
   } while (cantp != false);
 }
